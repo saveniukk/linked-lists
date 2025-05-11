@@ -93,7 +93,7 @@ class CircularLinkedList {
             }
         }
         this.length--;
-        return deletedElement;
+        return deletedElement.value;
     }
 
     deleteAll(element) {
