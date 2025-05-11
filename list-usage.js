@@ -26,8 +26,7 @@ console.log('Індекс першого елемента "B":', list.findFirst(
 console.log('Індекс останнього елемента "B":', list.findLast('B')); // 4
 
 // delete(index)
-console.log('Перед delete(1) індекс 1 має елемент:', list.get(1), 'Довжина списку:', list.getLength()); // 'cat', 5
-list.delete(1);
+console.log('Видалений елемент:', list.delete(1)); // cat
 console.log('Після delete(1) індекс 1 має елемент:', list.get(1), 'Довжина списку:', list.getLength()); // 'B', 4
 
 // deleteAll(element)
