@@ -94,7 +94,7 @@ class CircularLinkedList {
 
     clone() {
         const cloned = new CircularLinkedList();
-        cloned.items = [this.items];
+        cloned.items = [...this.items];
         return cloned;
     }
 
@@ -116,7 +116,7 @@ class CircularLinkedList {
 
     extend(list) {
         if (list && list.items && Array.isArray(list.items)) {
-             this.items.push(list.items);
+            this.items.push(...list.items);
         }
     }
 }
