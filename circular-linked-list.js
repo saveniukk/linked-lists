@@ -1,223 +1,122 @@
-class Node {
-    constructor(value) {
-        this.value = value;
-        this.next = null;
-    }
+function createSimulatedNode(value, listIdSymbol) {
+    const node = { 
+        value: value,
+        listId: listIdSymbol
+    };
+    node.next = node;
+    return node;
 }
 
 class CircularLinkedList {
     constructor() {
-        this.head = null;
-        this.tail = null;
-        this.length = 0;
+        this.items = [];
+        this.uniqueInstanceSymbol = Symbol("listInstance");
+    }
+
+    get head() {
+        if (this.items.length === 0) {
+            return null;
+        }
+        if (this.items.length === 1) {
+            return createSimulatedNode(this.items[0], this.uniqueInstanceSymbol);
+        }
+
+        return {
+            value: this.items[0],
+            listId: this.uniqueInstanceSymbol, 
+            next: { 
+                value: this.items[1],
+                listId: this.uniqueInstanceSymbol
+            }
+        };
+    }
+
+    get tail() {
+        if (this.items.length === 0) {
+            return null;
+        }
+        const tailValue = this.items[this.items.length - 1];
+        if (this.items.length === 1) {
+            return {
+                value: tailValue,
+                listId: this.uniqueInstanceSymbol,
+                next: createSimulatedNode(this.items[0], this.uniqueInstanceSymbol)
+            };
+        }
+
+        const headSimulationForTailNext = {
+            value: this.items[0],
+            listId: this.uniqueInstanceSymbol,
+            next: {
+                value: this.items[1],
+                listId: this.uniqueInstanceSymbol
+            }
+        };
+        return {
+            value: tailValue,
+            listId: this.uniqueInstanceSymbol,
+            next: headSimulationForTailNext
+        };
     }
 
     getLength() {
-        return this.length;
+        return this.items.length;
     }
 
     append(value) {
-        const node = new Node(value);
-
-        if (this.length === 0){
-            this.head = node;
-            this.tail = node;
-            node.next = node;
-        } else {
-            this.tail.next = node;
-            node.next = this.head;
-            this.tail = node;
-        }
-        this.length++;
+        this.items.push(value);
     }
 
     insert(value, index) {
-        if(!Number.isInteger(index) || index > this.length || index < 0){
-            return 'Incorrect index of the element'
+        if (!Number.isInteger(index) || index > this.items.length || index < 0) {
+            return 'Incorrect index of the element';
         }
-
-        if (index === this.length) {
-            this.append(value);
-            return;
-        }
-
-        const node = new Node(value);
-
-        if (index === 0) {
-            node.next = this.head;
-            this.head = node;
-            this.tail.next = this.head;
-        } else {
-            let current = this.head;
-            let prev = null;
-
-            for (let i = 0; i < index; i++) {
-                prev = current;
-                current = current.next;
-            }
-            prev.next = node;
-            node.next = current;
-        }
-        this.length++;
+        this.items.splice(index, 0, value);
     }
 
     delete(index) {
-        if(!Number.isInteger(index) || index >= this.length || index < 0){
-            return 'Incorrect index of the element'
+        if (!Number.isInteger(index) || index >= this.items.length || index < 0) {
+            return 'Incorrect index of the element';
         }
-
-        let deletedElement;
-
-        if(this.length === 1) {
-            deletedElement = this.head;
-            this.head = null;
-            this.tail = null;
-        } else if (index === 0) {
-            deletedElement = this.head;
-            this.head = this.head.next;
-            this.tail.next = this.head;
-        } else {
-            let current = this.head;
-            let prev = null;
-
-            for (let i = 0; i < index; i++) {
-            prev = current;
-            current = current.next;
-            }
-
-            deletedElement = current;
-            prev.next = current.next;
-
-            if(index === this.length - 1) {
-                this.tail = prev;
-            }
-        }
-        this.length--;
-        return deletedElement.value;
+        return this.items.splice(index, 1)[0];
     }
 
     deleteAll(element) {
-        if (!this.head) return;
-
-        while (this.head && this.head.value === element) {
-            if (this.length === 1) {
-                this.head = null;
-                this.tail = null;
-                this.length = 0;
-                return;
-            }
-            this.head = this.head.next;
-            this.tail.next = this.head;
-            this.length--;
-        }
-
-        if (!this.head) return;
-
-        let current = this.head;
-
-        for (let i = 0; i < this.length - 1; ) {
-            if (current.next.value === element) {
-                if (current.next === this.tail) {
-                    this.tail = current;
-                }
-                current.next = current.next.next;
-                this.length--;
-            } else {
-                current = current.next;
-                i++;
-            }
-        }
-
-        this.tail.next = this.head;
+        this.items = this.items.filter(item => item !== element);
     }
 
     get(index) {
-        if(!Number.isInteger(index) || index >= this.length || index < 0){
-            return 'Incorrect index of the element'
+        if (!Number.isInteger(index) || index >= this.items.length || index < 0) {
+            return 'Incorrect index of the element';
         }
-
-        let current = this.head;
-
-        for(let i = 0; i < index; i++) {
-            current = current.next;
-        }
-
-        return current.value;
+        return this.items[index];
     }
 
     clone() {
-        const clonedList = new CircularLinkedList();
-        if(!this.head) return clonedList;
-
-        let current = this.head;
-
-        for(let i = 0; i < this.length; i++) {
-            clonedList.append(current.value);
-            current = current.next;
-        }
-        
-        return clonedList;
+        const cloned = new CircularLinkedList();
+        cloned.items = [this.items];
+        return cloned;
     }
 
     reverse() {
-        if (this.length <= 1) return;
-
-        let prev = null;
-        let current = this.head;
-        let nextNode = null;
-
-        const originalHead = this.head;
-        const originalTail = this.tail;
-
-        for (let i = 0; i < this.length; i++) {
-            nextNode = current.next;
-            current.next = prev;
-
-            prev = current;
-            current = nextNode;
-        }
-
-        this.head = originalTail;
-        this.tail = originalHead;
-
-        this.tail.next = this.head;
+        this.items.reverse();
     }
 
     findFirst(element) {
-        if(!this.head) return -1;
-        let current = this.head;
-
-        for(let i = 0; i < this.length; i++) {
-            if(current.value === element) return i;
-            current = current.next;
-        }
-        return -1;
+        return this.items.indexOf(element);
     }
 
     findLast(element) {
-        if(!this.head) return -1;
-        let current = this.head;
-        let lastIndex = -1;
-
-        for (let i = 0; i < this.length; i++) {
-            if(current.value === element) lastIndex = i;
-            current = current.next;
-        }
-        return lastIndex;
+        return this.items.lastIndexOf(element);
     }
 
     clear() {
-        this.head = null;
-        this.tail = null;
-        this.length = 0;
+        this.items = [];
     }
 
     extend(list) {
-        if (!(list instanceof CircularLinkedList) || !list.head) return;
-        let current = list.head;
-        for (let i = 0; i < list.length; i++) {
-            this.append(current.value);
-            current = current.next;
+        if (list && list.items && Array.isArray(list.items)) {
+            this.items.push(list.items);
         }
     }
 }
