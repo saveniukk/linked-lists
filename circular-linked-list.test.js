@@ -12,11 +12,11 @@ describe('append method', () => {
 
         list.append(value);
 
-        expect(list.getLength()).toBe(1);
-        expect(list.head.value).toBe(value);
-        expect(list.tail.value).toBe(value);
-        expect(list.head.next).toBe(list.head);
-        expect(list.tail.next).toBe(list.head);
+        expect(list.getLength()).toEqual(1);
+        expect(list.head.value).toEqual(value);
+        expect(list.tail.value).toEqual(value);
+        expect(list.head.next).toEqual(list.head);
+        expect(list.tail.next).toEqual(list.head);
     });
 
     test('додавання другого елементу до списку', () => {
@@ -26,12 +26,12 @@ describe('append method', () => {
         list.append(value1);
         list.append(value2);
 
-        expect(list.getLength()).toBe(2);
-        expect(list.head.value).toBe(value1);
-        expect(list.tail.value).toBe(value2);
-        expect(list.head.next.value).toBe(value2);
-        expect(list.tail.next.value).toBe(value1);
-        expect(list.tail.next).toBe(list.head);
+        expect(list.getLength()).toEqual(2);
+        expect(list.head.value).toEqual(value1);
+        expect(list.tail.value).toEqual(value2);
+        expect(list.head.next.value).toEqual(value2);
+        expect(list.tail.next.value).toEqual(value1);
+        expect(list.tail.next).toEqual(list.head);
     });
 
     test('додавання декількох елементів до списку', () => {
@@ -43,11 +43,11 @@ describe('append method', () => {
         list.append(value2);
         list.append(value3);
 
-        expect(list.getLength()).toBe(3);
-        expect(list.head.value).toBe(value1);
-        expect(list.head.next.value).toBe(value2);
-        expect(list.tail.value).toBe(value3);
-        expect(list.tail.next).toBe(list.head);
+        expect(list.getLength()).toEqual(3);
+        expect(list.head.value).toEqual(value1);
+        expect(list.head.next.value).toEqual(value2);
+        expect(list.tail.value).toEqual(value3);
+        expect(list.tail.next).toEqual(list.head);
     })
 });
 
@@ -59,7 +59,7 @@ describe('getLength method', () => {
     });
 
     test('отримання довжини порожнього списку', () => {
-        expect(list.getLength()).toBe(0);
+        expect(list.getLength()).toEqual(0);
     });
 
     test('отримання правильної довжини після додавання елементів', () => {
@@ -69,7 +69,7 @@ describe('getLength method', () => {
 
     const length = list.getLength();
 
-    expect(length).toBe(3);
+    expect(length).toEqual(3);
     });
 });
 
@@ -83,24 +83,24 @@ describe('get method', () => {
     });
 
     test('повернення правильного значення за індексом', () => {
-        expect(list.get(0)).toBe('A');
-        expect(list.get(1)).toBe('B');
-        expect(list.get(2)).toBe('C');
+        expect(list.get(0)).toEqual('A');
+        expect(list.get(1)).toEqual('B');
+        expect(list.get(2)).toEqual('C');
     });
 
     test('повернення повідомлення про помилку при негативному індексі', () => {
-        expect(list.get(-1)).toBe('Incorrect index of the element');
+        expect(list.get(-1)).toEqual('Incorrect index of the element');
     });
 
     test('повернення повідомлення про помилку при індексі > кількість елементів', () => {
-        expect(list.get(3)).toBe('Incorrect index of the element');
-        expect(list.get(10)).toBe('Incorrect index of the element');
+        expect(list.get(3)).toEqual('Incorrect index of the element');
+        expect(list.get(10)).toEqual('Incorrect index of the element');
     })
 
     test('повернення повідомлення про помилку при не цілому індексі', () => {
-        expect(list.get(1.5)).toBe('Incorrect index of the element');
-        expect(list.get('A')).toBe('Incorrect index of the element');
-        expect(list.get(true)).toBe('Incorrect index of the element');
+        expect(list.get(1.5)).toEqual('Incorrect index of the element');
+        expect(list.get('A')).toEqual('Incorrect index of the element');
+        expect(list.get(true)).toEqual('Incorrect index of the element');
     })
 });
 
@@ -114,10 +114,10 @@ describe('insert method', () => {
     test('вставка в порожній список на 0 позицію', () => {
         list.insert('A', 0);
 
-        expect(list.getLength()).toBe(1);
-        expect(list.head.value).toBe('A');
-        expect(list.tail.value).toBe('A');
-        expect(list.head.next).toBe(list.head);
+        expect(list.getLength()).toEqual(1);
+        expect(list.head.value).toEqual('A');
+        expect(list.tail.value).toEqual('A');
+        expect(list.head.next).toEqual(list.head);
     });
 
     test('вставка на 0 позицію в не порожній список', () => {
@@ -126,14 +126,14 @@ describe('insert method', () => {
 
         list.insert('A', 0);
 
-        expect(list.getLength()).toBe(3);
-        expect(list.get(0)).toBe('A');
-        expect(list.get(1)).toBe('B');
-        expect(list.get(2)).toBe('C');
-        expect(list.head.value).toBe('A');
-        expect(list.head.next.value).toBe('B');
-        expect(list.tail.value).toBe('C');
-        expect(list.tail.next).toBe(list.head);
+        expect(list.getLength()).toEqual(3);
+        expect(list.get(0)).toEqual('A');
+        expect(list.get(1)).toEqual('B');
+        expect(list.get(2)).toEqual('C');
+        expect(list.head.value).toEqual('A');
+        expect(list.head.next.value).toEqual('B');
+        expect(list.tail.value).toEqual('C');
+        expect(list.tail.next).toEqual(list.head);
     });
 
     test('вставка в кінець списку', () => {
@@ -142,12 +142,12 @@ describe('insert method', () => {
 
         list.insert('C', 2);
 
-        expect(list.getLength()).toBe(3);
-        expect(list.get(0)).toBe('A');
-        expect(list.get(1)).toBe('B');
-        expect(list.get(2)).toBe('C');
-        expect(list.tail.value).toBe('C');
-        expect(list.tail.next).toBe(list.head);
+        expect(list.getLength()).toEqual(3);
+        expect(list.get(0)).toEqual('A');
+        expect(list.get(1)).toEqual('B');
+        expect(list.get(2)).toEqual('C');
+        expect(list.tail.value).toEqual('C');
+        expect(list.tail.next).toEqual(list.head);
     });
 
     test('вставка декількох елементів в різні позиції', () => {
@@ -157,40 +157,40 @@ describe('insert method', () => {
         list.insert('D', 3);
         list.insert('X', 0)
 
-        expect(list.getLength()).toBe(5);
-        expect(list.get(0)).toBe('X');
-        expect(list.get(1)).toBe('A');
-        expect(list.get(2)).toBe('B');
-        expect(list.get(3)).toBe('C');
-        expect(list.get(4)).toBe('D');
-        expect(list.tail.value).toBe('D');
-        expect(list.head.value).toBe('X');
-        expect(list.tail.next).toBe(list.head);
+        expect(list.getLength()).toEqual(5);
+        expect(list.get(0)).toEqual('X');
+        expect(list.get(1)).toEqual('A');
+        expect(list.get(2)).toEqual('B');
+        expect(list.get(3)).toEqual('C');
+        expect(list.get(4)).toEqual('D');
+        expect(list.tail.value).toEqual('D');
+        expect(list.head.value).toEqual('X');
+        expect(list.tail.next).toEqual(list.head);
     });
 
     test('повернення повідомлення про помилку при негативному індексі', () => {
         list.append('B');
 
-        expect(list.insert('A', -1)).toBe('Incorrect index of the element');
+        expect(list.insert('A', -1)).toEqual('Incorrect index of the element');
     });
 
     test('повернення повідомлення про помилку при індексі > кількість елементів', () => {
         list.append('A');
         list.append('B');
 
-        expect(list.insert('C', 3)).toBe('Incorrect index of the element');
-        expect(list.insert('C', 10)).toBe('Incorrect index of the element');
+        expect(list.insert('C', 3)).toEqual('Incorrect index of the element');
+        expect(list.insert('C', 10)).toEqual('Incorrect index of the element');
     });
 
     test('повернення повідомлення про помилку при не цілому індексі', () => {
         list.append('A');
         list.append('B');
 
-        expect(list.insert('A', 1.5)).toBe('Incorrect index of the element');
-        expect(list.insert('A', 'index')).toBe('Incorrect index of the element');
-        expect(list.insert('A', null)).toBe('Incorrect index of the element');
-        expect(list.insert('A', undefined)).toBe('Incorrect index of the element');
-        expect(list.insert('A', {})).toBe('Incorrect index of the element');
+        expect(list.insert('A', 1.5)).toEqual('Incorrect index of the element');
+        expect(list.insert('A', 'index')).toEqual('Incorrect index of the element');
+        expect(list.insert('A', null)).toEqual('Incorrect index of the element');
+        expect(list.insert('A', undefined)).toEqual('Incorrect index of the element');
+        expect(list.insert('A', {})).toEqual('Incorrect index of the element');
     });
 });
 
@@ -202,16 +202,16 @@ describe('delete method', () => {
     });
 
     test('спроба видалення з порожнього списку', () => {
-        expect(list.delete(0)).toBe('Incorrect index of the element');
+        expect(list.delete(0)).toEqual('Incorrect index of the element');
     });
 
     test('спроба видалення з некоректним індексом', () => {
         list.append('A');
 
-        expect(list.delete(-1)).toBe('Incorrect index of the element');
-        expect(list.delete(1)).toBe('Incorrect index of the element');
-        expect(list.delete(1.5)).toBe('Incorrect index of the element');
-        expect(list.delete('A')).toBe('Incorrect index of the element');
+        expect(list.delete(-1)).toEqual('Incorrect index of the element');
+        expect(list.delete(1)).toEqual('Incorrect index of the element');
+        expect(list.delete(1.5)).toEqual('Incorrect index of the element');
+        expect(list.delete('A')).toEqual('Incorrect index of the element');
     });
 
     test('видалення єдиного елементу зі списку', () => {
@@ -219,8 +219,8 @@ describe('delete method', () => {
 
         const deleted = list.delete(0);
 
-        expect(deleted).toBe('A');
-        expect(list.getLength()).toBe(0);
+        expect(deleted).toEqual('A');
+        expect(list.getLength()).toEqual(0);
         expect(list.head).toBeNull();
         expect(list.tail).toBeNull();
     });
@@ -232,13 +232,13 @@ describe('delete method', () => {
 
         const deleted = list.delete(0);
 
-        expect(deleted).toBe('A');
-        expect(list.getLength()).toBe(2);
-        expect(list.get(0)).toBe('B');
-        expect(list.get(1)).toBe('C');
-        expect(list.head.value).toBe('B');
-        expect(list.tail.value).toBe('C');
-        expect(list.tail.next).toBe(list.head);
+        expect(deleted).toEqual('A');
+        expect(list.getLength()).toEqual(2);
+        expect(list.get(0)).toEqual('B');
+        expect(list.get(1)).toEqual('C');
+        expect(list.head.value).toEqual('B');
+        expect(list.tail.value).toEqual('C');
+        expect(list.tail.next).toEqual(list.head);
     });
 
     test('видалення останнього елемента з не порожнього списку', () => {
@@ -248,13 +248,13 @@ describe('delete method', () => {
 
         const deleted = list.delete(2);
 
-        expect(deleted).toBe('C');
-        expect(list.getLength()).toBe(2);
-        expect(list.get(0)).toBe('A');
-        expect(list.get(1)).toBe('B');
-        expect(list.head.value).toBe('A');
-        expect(list.tail.value).toBe('B');
-        expect(list.tail.next).toBe(list.head);
+        expect(deleted).toEqual('C');
+        expect(list.getLength()).toEqual(2);
+        expect(list.get(0)).toEqual('A');
+        expect(list.get(1)).toEqual('B');
+        expect(list.head.value).toEqual('A');
+        expect(list.tail.value).toEqual('B');
+        expect(list.tail.next).toEqual(list.head);
     });
 
     test('видалення елемента з середини списку', () => {
@@ -265,14 +265,14 @@ describe('delete method', () => {
 
         const deleted = list.delete(1);
 
-        expect(deleted).toBe('B');
-        expect(list.getLength()).toBe(3);
-        expect(list.get(0)).toBe('A');
-        expect(list.get(1)).toBe('C');
-        expect(list.get(2)).toBe('D');
-        expect(list.head.value).toBe('A');
-        expect(list.tail.value).toBe('D');
-        expect(list.tail.next).toBe(list.head);
+        expect(deleted).toEqual('B');
+        expect(list.getLength()).toEqual(3);
+        expect(list.get(0)).toEqual('A');
+        expect(list.get(1)).toEqual('C');
+        expect(list.get(2)).toEqual('D');
+        expect(list.head.value).toEqual('A');
+        expect(list.tail.value).toEqual('D');
+        expect(list.tail.next).toEqual(list.head);
     });
 
     test('послідовне видалення всіх елементів', () => {
@@ -280,10 +280,10 @@ describe('delete method', () => {
         list.append('B');
         list.append('C');
 
-        expect(list.delete(0)).toBe('A');
-        expect(list.delete(1)).toBe('C');
-        expect(list.delete(0)).toBe('B');
-        expect(list.getLength()).toBe(0);
+        expect(list.delete(0)).toEqual('A');
+        expect(list.delete(1)).toEqual('C');
+        expect(list.delete(0)).toEqual('B');
+        expect(list.getLength()).toEqual(0);
         expect(list.head).toBeNull();
         expect(list.tail).toBeNull();
     });
@@ -298,7 +298,7 @@ describe('deleteAll method', () => {
 
     test('видалення з порожнього списку', () => {
         list.deleteAll('A');
-        expect(list.getLength()).toBe(0);
+        expect(list.getLength()).toEqual(0);
         expect(list.head).toBeNull();
     });
 
@@ -308,9 +308,9 @@ describe('deleteAll method', () => {
 
         list.deleteAll('C');
 
-        expect(list.getLength()).toBe(2);
-        expect(list.get(0)).toBe('A');
-        expect(list.get(1)).toBe('B');
+        expect(list.getLength()).toEqual(2);
+        expect(list.get(0)).toEqual('A');
+        expect(list.get(1)).toEqual('B');
     });
 
     test('видалення єдиного елемента (на початку)', () => {
@@ -320,12 +320,12 @@ describe('deleteAll method', () => {
 
         list.deleteAll('A');
 
-        expect(list.getLength()).toBe(2);
-        expect(list.get(0)).toBe('B');
-        expect(list.get(1)).toBe('C');
-        expect(list.head.value).toBe('B');
-        expect(list.tail.value).toBe('C');
-        expect(list.tail.next).toBe(list.head);
+        expect(list.getLength()).toEqual(2);
+        expect(list.get(0)).toEqual('B');
+        expect(list.get(1)).toEqual('C');
+        expect(list.head.value).toEqual('B');
+        expect(list.tail.value).toEqual('C');
+        expect(list.tail.next).toEqual(list.head);
     });
 
     test('видалення єдиного елемента (в середині)', () => {
@@ -335,10 +335,10 @@ describe('deleteAll method', () => {
 
         list.deleteAll('B');
 
-        expect(list.getLength()).toBe(2);
-        expect(list.get(0)).toBe('A');
-        expect(list.get(1)).toBe('C');
-        expect(list.tail.next).toBe(list.head);
+        expect(list.getLength()).toEqual(2);
+        expect(list.get(0)).toEqual('A');
+        expect(list.get(1)).toEqual('C');
+        expect(list.tail.next).toEqual(list.head);
     });
 
     test('видалення єдиного елемента (в кінці)', () => {
@@ -348,11 +348,11 @@ describe('deleteAll method', () => {
 
         list.deleteAll('C');
 
-        expect(list.getLength()).toBe(2);
-        expect(list.get(0)).toBe('A');
-        expect(list.get(1)).toBe('B');
-        expect(list.tail.value).toBe('B');
-        expect(list.tail.next).toBe(list.head);
+        expect(list.getLength()).toEqual(2);
+        expect(list.get(0)).toEqual('A');
+        expect(list.get(1)).toEqual('B');
+        expect(list.tail.value).toEqual('B');
+        expect(list.tail.next).toEqual(list.head);
     });
 
     test('видалення всіх елементів, якщо вони всі однакові (декілька)', () => {
@@ -362,7 +362,7 @@ describe('deleteAll method', () => {
 
         list.deleteAll('A');
 
-        expect(list.getLength()).toBe(0);
+        expect(list.getLength()).toEqual(0);
         expect(list.head).toBeNull();
         expect(list.tail).toBeNull();
     });
@@ -372,7 +372,7 @@ describe('deleteAll method', () => {
 
         list.deleteAll('A');
 
-        expect(list.getLength()).toBe(0);
+        expect(list.getLength()).toEqual(0);
         expect(list.head).toBeNull();
         expect(list.tail).toBeNull();
     });
@@ -382,8 +382,8 @@ describe('deleteAll method', () => {
 
         list.deleteAll('A');
 
-        expect(list.getLength()).toBe(1);
-        expect(list.head.value).toBe('B');
+        expect(list.getLength()).toEqual(1);
+        expect(list.head.value).toEqual('B');
     });
 
 
@@ -395,9 +395,9 @@ describe('deleteAll method', () => {
 
         list.deleteAll('A');
 
-        expect(list.getLength()).toBe(2);
-        expect(list.get(0)).toBe('B');
-        expect(list.get(1)).toBe('C');
+        expect(list.getLength()).toEqual(2);
+        expect(list.get(0)).toEqual('B');
+        expect(list.get(1)).toEqual('C');
     });
 
     test('видалення декількох однакових елементів, розташованих підряд (в середині)', () => {
@@ -408,9 +408,9 @@ describe('deleteAll method', () => {
 
         list.deleteAll('A');
 
-        expect(list.getLength()).toBe(2);
-        expect(list.get(0)).toBe('B');
-        expect(list.get(1)).toBe('C');
+        expect(list.getLength()).toEqual(2);
+        expect(list.get(0)).toEqual('B');
+        expect(list.get(1)).toEqual('C');
     });
 
     test('видалення декількох однакових елементів, розташованих підряд (в кінці)', () => {
@@ -421,11 +421,11 @@ describe('deleteAll method', () => {
 
         list.deleteAll('A');
 
-        expect(list.getLength()).toBe(2);
-        expect(list.get(0)).toBe('B');
-        expect(list.get(1)).toBe('C');
-        expect(list.tail.value).toBe('C');
-        expect(list.tail.next).toBe(list.head);
+        expect(list.getLength()).toEqual(2);
+        expect(list.get(0)).toEqual('B');
+        expect(list.get(1)).toEqual('C');
+        expect(list.tail.value).toEqual('C');
+        expect(list.tail.next).toEqual(list.head);
     });
     
     test('видалення декількох однакових елементів, розташованих не підряд', () => {
@@ -437,12 +437,12 @@ describe('deleteAll method', () => {
 
         list.deleteAll('A');
 
-        expect(list.getLength()).toBe(2);
-        expect(list.get(0)).toBe('B');
-        expect(list.get(1)).toBe('C');
-        expect(list.head.value).toBe('B');
-        expect(list.tail.value).toBe('C');
-        expect(list.tail.next).toBe(list.head);
+        expect(list.getLength()).toEqual(2);
+        expect(list.get(0)).toEqual('B');
+        expect(list.get(1)).toEqual('C');
+        expect(list.head.value).toEqual('B');
+        expect(list.tail.value).toEqual('C');
+        expect(list.tail.next).toEqual(list.head);
     });
 
     test('видалення елементів, коли голова списку змінюється декілька разів', () => {
@@ -453,11 +453,11 @@ describe('deleteAll method', () => {
 
         list.deleteAll('A');
 
-        expect(list.getLength()).toBe(1);
-        expect(list.get(0)).toBe('B');
-        expect(list.head.value).toBe('B');
-        expect(list.tail.value).toBe('B');
-        expect(list.tail.next).toBe(list.head);
+        expect(list.getLength()).toEqual(1);
+        expect(list.get(0)).toEqual('B');
+        expect(list.head.value).toEqual('B');
+        expect(list.tail.value).toEqual('B');
+        expect(list.tail.next).toEqual(list.head);
     });
 
     test('видалення елементів так, що список стає порожнім', () => {
@@ -468,7 +468,7 @@ describe('deleteAll method', () => {
         list.deleteAll('A');
         list.deleteAll('B');
 
-        expect(list.getLength()).toBe(0);
+        expect(list.getLength()).toEqual(0);
         expect(list.head).toBeNull();
         expect(list.tail).toBeNull();
     });
@@ -479,12 +479,12 @@ describe('deleteAll method', () => {
         
         list.deleteAll('A');
         
-        expect(list.getLength()).toBe(2);
-        expect(list.get(0)).toBe('B');
-        expect(list.get(1)).toBe('C');
-        expect(list.head.value).toBe('B');
-        expect(list.tail.value).toBe('C');
-        expect(list.tail.next).toBe(list.head);
+        expect(list.getLength()).toEqual(2);
+        expect(list.get(0)).toEqual('B');
+        expect(list.get(1)).toEqual('C');
+        expect(list.head.value).toEqual('B');
+        expect(list.tail.value).toEqual('C');
+        expect(list.tail.next).toEqual(list.head);
     });
 
     test('випадок, де всі елементи, крім одного, видаляються', () => {
@@ -496,10 +496,10 @@ describe('deleteAll method', () => {
 
         list.deleteAll('X');
 
-        expect(list.getLength()).toBe(1);
-        expect(list.get(0)).toBe('Y');
-        expect(list.head.value).toBe('Y');
-        expect(list.tail.value).toBe('Y');
+        expect(list.getLength()).toEqual(1);
+        expect(list.get(0)).toEqual('Y');
+        expect(list.head.value).toEqual('Y');
+        expect(list.tail.value).toEqual('Y');
     });
 });
 
@@ -513,10 +513,10 @@ describe('clone method', () => {
     test('клонування порожнього списку', () => {
         const clonedList = list.clone();
 
-        expect(clonedList.getLength()).toBe(0);
+        expect(clonedList.getLength()).toEqual(0);
         expect(clonedList.head).toBeNull();
         expect(clonedList.tail).toBeNull();
-        expect(clonedList).not.toBe(list);
+        expect(clonedList).not.toEqual(list);
     });
 
     test('клонування списку з одним елементом', () => {
@@ -524,13 +524,13 @@ describe('clone method', () => {
 
         const clonedList = list.clone();
 
-        expect(clonedList.getLength()).toBe(1);
-        expect(clonedList.get(0)).toBe('A');
-        expect(clonedList.head.value).toBe('A');
-        expect(clonedList.tail.value).toBe('A');
-        expect(clonedList.head.next).toBe(clonedList.head);
-        expect(clonedList).not.toBe(list);
-        expect(clonedList.head).not.toBe(list.head);
+        expect(clonedList.getLength()).toEqual(1);
+        expect(clonedList.get(0)).toEqual('A');
+        expect(clonedList.head.value).toEqual('A');
+        expect(clonedList.tail.value).toEqual('A');
+        expect(clonedList.head.next).toEqual(clonedList.head);
+        expect(clonedList).not.toEqual(list);
+        expect(clonedList.head).not.toEqual(list.head);
     });
 
     test('клонування списку з декількома елементами', () => {
@@ -540,14 +540,14 @@ describe('clone method', () => {
 
         const clonedList = list.clone();
 
-        expect(clonedList.getLength()).toBe(3);
-        expect(clonedList.get(0)).toBe('A');
-        expect(clonedList.get(1)).toBe('B');
-        expect(clonedList.get(2)).toBe('C');
-        expect(clonedList.head.value).toBe('A');
-        expect(clonedList.tail.value).toBe('C');
-        expect(clonedList.tail.next).toBe(clonedList.head);
-        expect(clonedList).not.toBe(list);
+        expect(clonedList.getLength()).toEqual(3);
+        expect(clonedList.get(0)).toEqual('A');
+        expect(clonedList.get(1)).toEqual('B');
+        expect(clonedList.get(2)).toEqual('C');
+        expect(clonedList.head.value).toEqual('A');
+        expect(clonedList.tail.value).toEqual('C');
+        expect(clonedList.tail.next).toEqual(clonedList.head);
+        expect(clonedList).not.toEqual(list);
     });
 
     test('зміна оригіналу не впливає на клон', () => {
@@ -557,11 +557,11 @@ describe('clone method', () => {
         list.append('C');
         list.delete(0);
         
-        expect(clonedList.getLength()).toBe(2);
-        expect(clonedList.get(0)).toBe('A');
-        expect(clonedList.get(1)).toBe('B');
-        expect(list.getLength()).toBe(2);
-        expect(list.get(0)).toBe('B');
+        expect(clonedList.getLength()).toEqual(2);
+        expect(clonedList.get(0)).toEqual('A');
+        expect(clonedList.get(1)).toEqual('B');
+        expect(list.getLength()).toEqual(2);
+        expect(list.get(0)).toEqual('B');
     });
 
     test('зміна клона не впливає на оригінал', () => {
@@ -571,12 +571,12 @@ describe('clone method', () => {
         clonedList.append('X');
         clonedList.delete(0);
         
-        expect(list.getLength()).toBe(2);
-        expect(list.get(0)).toBe('A');
-        expect(list.get(1)).toBe('B');
+        expect(list.getLength()).toEqual(2);
+        expect(list.get(0)).toEqual('A');
+        expect(list.get(1)).toEqual('B');
 
-        expect(clonedList.getLength()).toBe(2);
-        expect(clonedList.get(0)).toBe('B');
+        expect(clonedList.getLength()).toEqual(2);
+        expect(clonedList.get(0)).toEqual('B');
     });
 });
 
@@ -590,7 +590,7 @@ describe('reverse method', () => {
     test('реверс порожнього списку', () => {
         list.reverse();
 
-        expect(list.getLength()).toBe(0);
+        expect(list.getLength()).toEqual(0);
         expect(list.head).toBeNull();
         expect(list.tail).toBeNull();
     });
@@ -600,11 +600,11 @@ describe('reverse method', () => {
 
         list.reverse();
 
-        expect(list.getLength()).toBe(1);
-        expect(list.get(0)).toBe('A');
-        expect(list.head.value).toBe('A');
-        expect(list.tail.value).toBe('A');
-        expect(list.tail.next).toBe(list.head);
+        expect(list.getLength()).toEqual(1);
+        expect(list.get(0)).toEqual('A');
+        expect(list.head.value).toEqual('A');
+        expect(list.tail.value).toEqual('A');
+        expect(list.tail.next).toEqual(list.head);
     });
 
     test('реверс списку з двома елементами', () => {
@@ -613,12 +613,12 @@ describe('reverse method', () => {
 
         list.reverse();
 
-        expect(list.getLength()).toBe(2);
-        expect(list.get(0)).toBe('B');
-        expect(list.get(1)).toBe('A');
-        expect(list.head.value).toBe('B');
-        expect(list.tail.value).toBe('A');
-        expect(list.tail.next).toBe(list.head);
+        expect(list.getLength()).toEqual(2);
+        expect(list.get(0)).toEqual('B');
+        expect(list.get(1)).toEqual('A');
+        expect(list.head.value).toEqual('B');
+        expect(list.tail.value).toEqual('A');
+        expect(list.tail.next).toEqual(list.head);
     });
 
     test('реверс списку з декількома елементами', () => {
@@ -629,14 +629,14 @@ describe('reverse method', () => {
 
         list.reverse();
 
-        expect(list.getLength()).toBe(4);
-        expect(list.get(0)).toBe('D');
-        expect(list.get(1)).toBe('C');
-        expect(list.get(2)).toBe('B');
-        expect(list.get(3)).toBe('A');
-        expect(list.head.value).toBe('D');
-        expect(list.tail.value).toBe('A');
-        expect(list.tail.next).toBe(list.head);
+        expect(list.getLength()).toEqual(4);
+        expect(list.get(0)).toEqual('D');
+        expect(list.get(1)).toEqual('C');
+        expect(list.get(2)).toEqual('B');
+        expect(list.get(3)).toEqual('A');
+        expect(list.head.value).toEqual('D');
+        expect(list.tail.value).toEqual('A');
+        expect(list.tail.next).toEqual(list.head);
     });
 
     test('подвійний реверс повертає до початкового стану', () => {
@@ -647,10 +647,10 @@ describe('reverse method', () => {
         list.reverse();
         list.reverse();
 
-        expect(list.getLength()).toBe(3);
-        expect(list.get(0)).toBe('A');
-        expect(list.get(1)).toBe('B');
-        expect(list.get(2)).toBe('C');
+        expect(list.getLength()).toEqual(3);
+        expect(list.get(0)).toEqual('A');
+        expect(list.get(1)).toEqual('B');
+        expect(list.get(2)).toEqual('C');
     });
 });
 
@@ -662,20 +662,20 @@ describe('findFirst method', () => {
     });
 
     test('пошук у порожньому списку', () => {
-        expect(list.findFirst('A')).toBe(-1);
+        expect(list.findFirst('A')).toEqual(-1);
     });
 
     test('пошук елемента, якого немає в списку', () => {
         list.append('A');
         list.append('B');
 
-        expect(list.findFirst('C')).toBe(-1);
+        expect(list.findFirst('C')).toEqual(-1);
     });
 
     test('пошук першого елемента, коли елемент один в списку', () => {
         list.append('A');
 
-        expect(list.findFirst('A')).toBe(0);
+        expect(list.findFirst('A')).toEqual(0);
     });
 
     test('пошук першого елемента, коли елементів декілька', () => {
@@ -684,9 +684,9 @@ describe('findFirst method', () => {
         list.append('A');
         list.append('C');
 
-        expect(list.findFirst('A')).toBe(0);
-        expect(list.findFirst('B')).toBe(1);
-        expect(list.findFirst('C')).toBe(3);
+        expect(list.findFirst('A')).toEqual(0);
+        expect(list.findFirst('B')).toEqual(1);
+        expect(list.findFirst('C')).toEqual(3);
     });
 
     test('пошук з різними типами даних', () => {
@@ -694,10 +694,10 @@ describe('findFirst method', () => {
         list.append('10');
         list.append(true);
 
-        expect(list.findFirst(10)).toBe(0);
-        expect(list.findFirst('10')).toBe(1);
-        expect(list.findFirst(true)).toBe(2);
-        expect(list.findFirst(false)).toBe(-1);
+        expect(list.findFirst(10)).toEqual(0);
+        expect(list.findFirst('10')).toEqual(1);
+        expect(list.findFirst(true)).toEqual(2);
+        expect(list.findFirst(false)).toEqual(-1);
     });
 });
 
@@ -709,20 +709,20 @@ describe('findLast method', () => {
     });
 
     test('пошук у порожньому списку', () => {
-        expect(list.findLast('A')).toBe(-1);
+        expect(list.findLast('A')).toEqual(-1);
     });
 
     test('пошук елемента, якого немає в списку', () => {
         list.append('A');
         list.append('B');
 
-        expect(list.findLast('C')).toBe(-1);
+        expect(list.findLast('C')).toEqual(-1);
     });
 
     test('пошук останнього входження, коли елемент один в списку', () => {
         list.append('A');
 
-        expect(list.findLast('A')).toBe(0);
+        expect(list.findLast('A')).toEqual(0);
     });
 
     test('пошук останнього входження, коли елементів декілька', () => {
@@ -732,9 +732,9 @@ describe('findLast method', () => {
         list.append('C');
         list.append('A');
 
-        expect(list.findLast('A')).toBe(4);
-        expect(list.findLast('B')).toBe(1);
-        expect(list.findLast('C')).toBe(3);
+        expect(list.findLast('A')).toEqual(4);
+        expect(list.findLast('B')).toEqual(1);
+        expect(list.findLast('C')).toEqual(3);
     });
     
     test('пошук останнього входження, коли елемент на початку', () => {
@@ -742,7 +742,7 @@ describe('findLast method', () => {
         list.append('B');
         list.append('C');
 
-        expect(list.findLast('A')).toBe(0);
+        expect(list.findLast('A')).toEqual(0);
     });
 });
 
@@ -756,7 +756,7 @@ describe('clear method', () => {
     test('очищення порожнього списку', () => {
         list.clear();
 
-        expect(list.getLength()).toBe(0);
+        expect(list.getLength()).toEqual(0);
         expect(list.head).toBeNull();
         expect(list.tail).toBeNull();
     });
@@ -766,7 +766,7 @@ describe('clear method', () => {
 
         list.clear();
 
-        expect(list.getLength()).toBe(0);
+        expect(list.getLength()).toEqual(0);
         expect(list.head).toBeNull();
         expect(list.tail).toBeNull();
     });
@@ -778,7 +778,7 @@ describe('clear method', () => {
 
         list.clear();
 
-        expect(list.getLength()).toBe(0);
+        expect(list.getLength()).toEqual(0);
         expect(list.head).toBeNull();
         expect(list.tail).toBeNull();
     });
@@ -790,9 +790,9 @@ describe('clear method', () => {
         list.append('B');
         list.append('C');
 
-        expect(list.getLength()).toBe(2);
-        expect(list.get(0)).toBe('B');
-        expect(list.get(1)).toBe('C');
+        expect(list.getLength()).toEqual(2);
+        expect(list.get(0)).toEqual('B');
+        expect(list.get(1)).toEqual('C');
     });
 });
 
@@ -808,7 +808,7 @@ describe('extend method', () => {
     test('розширення порожнього списку іншим порожнім списком', () => {
         list1.extend(list2);
 
-        expect(list1.getLength()).toBe(0);
+        expect(list1.getLength()).toEqual(0);
         expect(list1.head).toBeNull();
     });
 
@@ -818,10 +818,10 @@ describe('extend method', () => {
 
         list1.extend(list2);
 
-        expect(list1.getLength()).toBe(2);
-        expect(list1.get(0)).toBe('A');
-        expect(list1.get(1)).toBe('B');
-        expect(list1.tail.next).toBe(list1.head);
+        expect(list1.getLength()).toEqual(2);
+        expect(list1.get(0)).toEqual('A');
+        expect(list1.get(1)).toEqual('B');
+        expect(list1.tail.next).toEqual(list1.head);
     });
 
     test('розширення не порожнього списку порожнім списком', () => {
@@ -830,9 +830,9 @@ describe('extend method', () => {
 
         list1.extend(list2);
 
-        expect(list1.getLength()).toBe(2);
-        expect(list1.get(0)).toBe('X');
-        expect(list1.get(1)).toBe('Y');
+        expect(list1.getLength()).toEqual(2);
+        expect(list1.get(0)).toEqual('X');
+        expect(list1.get(1)).toEqual('Y');
     });
 
     test('розширення не порожнього списку іншим не порожнім списком', () => {
@@ -843,14 +843,14 @@ describe('extend method', () => {
 
         list1.extend(list2);
 
-        expect(list1.getLength()).toBe(4);
-        expect(list1.get(0)).toBe('A');
-        expect(list1.get(1)).toBe('B');
-        expect(list1.get(2)).toBe('C');
-        expect(list1.get(3)).toBe('D');
-        expect(list1.head.value).toBe('A');
-        expect(list1.tail.value).toBe('D');
-        expect(list1.tail.next).toBe(list1.head);
+        expect(list1.getLength()).toEqual(4);
+        expect(list1.get(0)).toEqual('A');
+        expect(list1.get(1)).toEqual('B');
+        expect(list1.get(2)).toEqual('C');
+        expect(list1.get(3)).toEqual('D');
+        expect(list1.head.value).toEqual('A');
+        expect(list1.tail.value).toEqual('D');
+        expect(list1.tail.next).toEqual(list1.head);
     });
 
     test('оригінальний список не змінюється', () => {
@@ -862,21 +862,21 @@ describe('extend method', () => {
 
         list1.extend(list2);
         
-        expect(list2.getLength()).toBe(originalList2Length);
-        expect(list2.head.value).toBe(originalList2HeadValue);
-        expect(list2.get(0)).toBe('B');
-        expect(list2.get(1)).toBe('C');
+        expect(list2.getLength()).toEqual(originalList2Length);
+        expect(list2.head.value).toEqual(originalList2HeadValue);
+        expect(list2.get(0)).toEqual('B');
+        expect(list2.get(1)).toEqual('C');
     });
 
     test("спроба розширення не об'єктом CircularLinkedList", () => {
         list1.append('A');
         list1.extend(null);
-        expect(list1.getLength()).toBe(1);
+        expect(list1.getLength()).toEqual(1);
 
         list1.extend({});
-        expect(list1.getLength()).toBe(1);
+        expect(list1.getLength()).toEqual(1);
 
         list1.extend([1,2,3]);
-        expect(list1.getLength()).toBe(1);
+        expect(list1.getLength()).toEqual(1);
     });
 });
