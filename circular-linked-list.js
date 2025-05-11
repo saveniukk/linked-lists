@@ -116,7 +116,7 @@ class CircularLinkedList {
 
     extend(list) {
         if (list && list.items && Array.isArray(list.items)) {
-            this.items.push(list.items);
+             this.items.push(list.items);
         }
     }
 }
