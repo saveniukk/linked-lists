@@ -111,11 +111,12 @@ class CircularLinkedList {
             this.length--;
         }
 
-        if(!this.head) return;
+        if (!this.head) return;
 
         let current = this.head;
-        while (current != this.head) {
-            if (current.next.value === value) {
+
+        for (let i = 0; i < this.length - 1; ) {
+            if (current.next.value === element) {
                 if (current.next === this.tail) {
                     this.tail = current;
                 }
@@ -123,12 +124,11 @@ class CircularLinkedList {
                 this.length--;
             } else {
                 current = current.next;
+                i++;
             }
         }
 
-        if(this.tail) {
-            this.tail.next = this.head;
-        } else this.head = null;
+        this.tail.next = this.head;
     }
 
     get(index) {
